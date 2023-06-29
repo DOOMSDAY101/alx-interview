@@ -1,31 +1,29 @@
 #!/usr/bin/python3
-"""returns a pascal triangle"""
+"""
+Pascal's Triangle
+"""
 
+
+def binomialCoeff(n, k):
+    """ calculate the value of Binomial Coefficient """
+    res = 1
+    if (k > n - k):
+        k = n - k
+    for i in range(0, k):
+        res = res * (n - i)
+        res = res // (i + 1)
+    return res
 
 def pascal_triangle(n):
     """
-    returns a list of integers in a pascal triangle format
+    Returns list of lists of integers representing
+    the Pascal’s triangle of n or an empty list if n <= 0
+    You can assume n will be always an integer
     """
-
-    if n <= 0:
-        # return empty list
-        return []
-    pascal = [[1]]
-    if n == 1:
-        return pascal
-
-    for i in range(1, n):
-        left = -1
-        right = 0
-        in_pas = []
-        for j in range(i + 1):
-            num = 0 
-            if left > -1:
-                num += pascal[i - 1][left]
-            if right < i:
-                num += pascal[i - 1][right]
-            left += 1
-            right += 1
-            in_pas.append(num)
-        pascal.append(in_pas)
-    return pascal
+    l1 = []
+    for line in range(0, n):
+        l2 = []
+        for i in range(0, line + 1):
+            l2.append(binomialCoeff(line, i))
+        l1.append(l2)
+    return l1

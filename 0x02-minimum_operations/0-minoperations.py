@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Minimum Operations """
 
+
 def minOperations(n):
     """ Find minimum number of operations to create string with COPY & PASTE"""
     if not isinstance(n, int):

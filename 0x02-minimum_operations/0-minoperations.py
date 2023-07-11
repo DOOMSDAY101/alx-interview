@@ -1,21 +1,23 @@
 #!/usr/bin/python3
-
-""" Module that calculates operations """
+""" Minimum Operations """
 
 def minOperations(n):
     """
-    Method that calculates the fewest number of
-    operations needed
+    In a text file, there is a single character H. Your text editor can execute
+    only two operations in this file: Copy All and Paste. Given a number n,
+    write a method that calculates the fewest number of operations needed to
+    result in exactly n H characters in the file.
+    Returns an integer
+    If n is impossible to achieve, returns 0
     """
-    if n < 2 or type(n) is not int:
+    if not isinstance(n, int):
         return 0
-    check = []
-    val = n
-    i = 1
-    while val != 1:
-        i += 1
-        if val % i == 0:
-            while (val % i == 0 and val != 1):
-                val = val / i
-                check.append(i)
-    return sum(check)
+    operations = 0
+    iterator = 2
+    while (iterator <= n):
+        if not (n % iterator):
+            n = int(n / iterator)
+            operations += iterator
+            iterator = 1
+        iterator += 1
+    return operations
